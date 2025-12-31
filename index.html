@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
-    <title>🎂 Chúc Mừng Sinh Nhật!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>🍗 Chúc Mừng Năm Mới 2026! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Quicksand:wght@400;600;700&family=Lobster&family=Fredoka+One&family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,6 +25,74 @@
             position: relative;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🍗</text></svg>") 16 16, auto;
+        }
+
+        /* ==================== MOVIE INTRO ==================== */
+        .movie-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100dvh;
+            background: #000;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .movie-intro.hidden {
+            display: none;
+        }
+
+        .movie-text {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            color: #ffd700;
+            text-shadow: 0 0 20px #ff6b00, 0 0 40px #ff6b00;
+            opacity: 0;
+            animation: movieFadeIn 1s ease forwards;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .movie-text.line1 { animation-delay: 0.5s; }
+        .movie-text.line2 { animation-delay: 2s; color: #ff6b6b; }
+        .movie-text.line3 { animation-delay: 3.5s; font-size: clamp(2rem, 8vw, 5rem); }
+
+        @keyframes movieFadeIn {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .skip-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeIn 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .skip-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         /* ==================== SCENE INTRO ==================== */
@@ -35,7 +103,7 @@
             width: 100%;
             height: 100%;
             height: 100dvh;
-            background: radial-gradient(ellipse at center, #1a1a2e 0%, #000 100%);
+            background: radial-gradient(ellipse at center, #1a0a00 0%, #000 100%);
             z-index: 1000;
             display: flex;
             justify-content: center;
@@ -51,82 +119,60 @@
             pointer-events: none;
         }
 
-        .gift-box {
+        /* Chef Box */
+        .chef-box {
             position: relative;
-            width: 120px;
-            height: 120px;
-            animation: giftFloat 2s ease-in-out infinite;
+            width: 200px;
+            height: 200px;
+            animation: chefBounce 1s ease-in-out infinite;
         }
 
-        .gift-box .box {
+        .chef-emoji {
+            font-size: 100px;
             position: absolute;
-            bottom: 0;
-            width: 120px;
-            height: 80px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
-        }
-
-        .gift-box .box::before {
-            content: '';
-            position: absolute;
-            top: 0;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
-            width: 25px;
-            height: 100%;
-            background: linear-gradient(135deg, #feca57, #f9ca24);
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 10px 30px rgba(255, 107, 0, 0.5));
         }
 
-        .gift-box .lid {
+        .chicken-float {
             position: absolute;
-            top: 0;
-            left: -8px;
-            width: 136px;
-            height: 32px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-            border-radius: 8px 8px 0 0;
-            transform-origin: left bottom;
-            animation: lidOpen 1s ease-in-out infinite alternate;
+            font-size: 40px;
+            animation: chickenOrbit 3s linear infinite;
         }
 
-        .gift-box .lid::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 25px;
-            height: 100%;
-            background: linear-gradient(135deg, #feca57, #f9ca24);
+        .chicken-float:nth-child(2) { animation-delay: 0s; }
+        .chicken-float:nth-child(3) { animation-delay: 1s; }
+        .chicken-float:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes chickenOrbit {
+            0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
         }
 
-        @keyframes giftFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes lidOpen {
-            0% { transform: rotateX(0deg); }
-            100% { transform: rotateX(-25deg); }
+        @keyframes chefBounce {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
         }
 
         .tap-text {
             margin-top: 40px;
-            font-size: 1.2rem;
-            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.3rem;
+            color: #ffd700;
             text-align: center;
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: tapPulse 1.5s ease-in-out infinite;
             padding: 0 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @keyframes tapPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
 
-        /* ==================== CURTAIN ==================== */
+        /* ==================== CURTAIN - KITCHEN DOORS ==================== */
         .scene-curtain {
             position: fixed;
             top: 0;
@@ -145,12 +191,28 @@
             top: 0;
             width: 50%;
             height: 100%;
-            background: linear-gradient(180deg, #8B0000, #DC143C, #8B0000);
-            transition: transform 2s cubic-bezier(0.77, 0, 0.175, 1);
+            background: linear-gradient(180deg, #8B4513, #A0522D, #8B4513);
+            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .curtain-left { left: 0; border-right: 4px solid #FFD700; }
-        .curtain-right { right: 0; border-left: 4px solid #FFD700; }
+        .curtain-left { 
+            left: 0; 
+            border-right: 8px solid #FFD700;
+        }
+        
+        .curtain-right { 
+            right: 0; 
+            border-left: 8px solid #FFD700;
+        }
+
+        .curtain-left::after, .curtain-right::after {
+            content: '🍗';
+            font-size: 80px;
+            opacity: 0.3;
+        }
 
         .scene-curtain.open .curtain-left { transform: translateX(-100%); }
         .scene-curtain.open .curtain-right { transform: translateX(100%); }
@@ -162,15 +224,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #1a0a00 0%, #2d1810 50%, #4a1c00 100%);
             z-index: 0;
-            animation: bgShift 10s ease-in-out infinite;
+            animation: bgShift 15s ease-in-out infinite;
         }
 
         @keyframes bgShift {
-            0%, 100% { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
-            33% { background: linear-gradient(135deg, #2d1b69 0%, #11998e 50%, #0f3460 100%); }
-            66% { background: linear-gradient(135deg, #fc466b 0%, #3f5efb 50%, #1a1a2e 100%); }
+            0%, 100% { background: linear-gradient(135deg, #1a0a00 0%, #2d1810 50%, #4a1c00 100%); }
+            33% { background: linear-gradient(135deg, #2d0a1a 0%, #4a1c2d 50%, #1a0a00 100%); }
+            66% { background: linear-gradient(135deg, #0a1a2d 0%, #1c2d4a 50%, #2d1810 100%); }
+        }
+
+        /* Kitchen Pattern Overlay */
+        .kitchen-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,215,0,0.03) 2%, transparent 2.5%),
+                radial-gradient(circle at 75% 75%, rgba(255,107,0,0.03) 2%, transparent 2.5%);
+            background-size: 60px 60px;
+            z-index: 1;
+            pointer-events: none;
         }
 
         /* ==================== PARTICLES ==================== */
@@ -181,19 +258,19 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
 
-        .star {
+        .spark {
             position: absolute;
-            background: white;
+            background: #ffd700;
             border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
+            animation: sparkle 2s infinite ease-in-out;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.3); }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
         }
 
         /* ==================== FLOATING ELEMENTS ==================== */
@@ -207,63 +284,72 @@
             z-index: 10;
         }
 
-        .floating-heart {
+        .floating-food {
             position: absolute;
-            font-size: 1.5rem;
-            animation: floatUp 10s linear infinite;
+            font-size: 2rem;
+            animation: floatUpFood 12s linear infinite;
             opacity: 0;
             pointer-events: auto;
             cursor: pointer;
+            filter: drop-shadow(0 5px 15px rgba(255,107,0,0.3));
         }
 
-        @keyframes floatUp {
+        @keyframes floatUpFood {
             0% { transform: translateY(100vh) rotate(0deg) scale(0); opacity: 0; }
-            10% { opacity: 0.8; transform: translateY(85vh) rotate(36deg) scale(1); }
-            90% { opacity: 0.8; }
+            10% { opacity: 0.9; transform: translateY(85vh) rotate(36deg) scale(1); }
+            90% { opacity: 0.9; }
             100% { transform: translateY(-50px) rotate(360deg) scale(0.5); opacity: 0; }
         }
 
-        .balloon {
+        /* Chicken Wings Flying */
+        .flying-chicken {
             position: absolute;
-            width: 45px;
-            height: 55px;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: balloonFloat 8s ease-in-out infinite;
-            opacity: 0.85;
+            width: 60px;
+            height: 60px;
+            font-size: 50px;
+            animation: chickenFly 6s ease-in-out infinite;
+            opacity: 0.9;
             pointer-events: auto;
             cursor: pointer;
-            transition: transform 0.3s, filter 0.3s;
+            transition: transform 0.3s;
+            filter: drop-shadow(0 5px 20px rgba(255, 107, 0, 0.5));
         }
 
-        .balloon:hover, .balloon:active {
-            transform: scale(1.2) !important;
-            filter: brightness(1.3);
+        .flying-chicken:hover, .flying-chicken:active {
+            transform: scale(1.3) rotate(20deg) !important;
         }
 
-        .balloon.popped {
-            animation: balloonPop 0.4s ease-out forwards !important;
+        .flying-chicken.eaten {
+            animation: chickenEaten 0.5s ease-out forwards !important;
         }
 
-        @keyframes balloonPop {
+        @keyframes chickenEaten {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.5; }
-            100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.5; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
         }
 
-        .balloon::after {
-            content: '';
+        @keyframes chickenFly {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            25% { transform: translateY(-30px) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+            75% { transform: translateY(-40px) rotate(10deg); }
+        }
+
+        /* Steam Effect */
+        .steam {
             position: absolute;
-            bottom: -40px;
-            left: 50%;
-            width: 1.5px;
-            height: 35px;
-            background: rgba(255,255,255,0.4);
-            transform: translateX(-50%);
+            width: 8px;
+            height: 30px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            filter: blur(5px);
+            animation: steamRise 2s ease-out infinite;
         }
 
-        @keyframes balloonFloat {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-25px) rotate(5deg); }
+        @keyframes steamRise {
+            0% { transform: translateY(0) scaleX(1); opacity: 0.6; }
+            100% { transform: translateY(-60px) scaleX(2); opacity: 0; }
         }
 
         /* ==================== FIREWORKS ==================== */
@@ -279,10 +365,10 @@
 
         .firework-particle {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            animation: particleFly 1.2s ease-out forwards;
+            animation: particleFly 1.5s ease-out forwards;
         }
 
         @keyframes particleFly {
@@ -306,13 +392,36 @@
             position: fixed;
             pointer-events: none;
             z-index: 150;
-            font-size: 18px;
-            animation: trailFade 0.8s ease-out forwards;
+            font-size: 24px;
+            animation: trailFade 1s ease-out forwards;
         }
 
         @keyframes trailFade {
-            0% { opacity: 1; transform: scale(1) translateY(0); }
-            100% { opacity: 0; transform: scale(0) translateY(-40px); }
+            0% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+            100% { opacity: 0; transform: scale(0) translateY(-50px) rotate(180deg); }
+        }
+
+        /* ==================== SIZZLE EFFECT ==================== */
+        .sizzle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 60;
+        }
+
+        .sizzle {
+            position: absolute;
+            font-size: 30px;
+            animation: sizzlePop 0.8s ease-out forwards;
+        }
+
+        @keyframes sizzlePop {
+            0% { transform: scale(0) translateY(0); opacity: 1; }
+            50% { transform: scale(1.2) translateY(-20px); opacity: 1; }
+            100% { transform: scale(0.5) translateY(-50px); opacity: 0; }
         }
 
         /* ==================== MAIN CARD CONTAINER ==================== */
@@ -326,45 +435,49 @@
             min-height: 100dvh;
             padding: 20px 15px;
             opacity: 0;
-            animation: cardReveal 1.5s ease-out 2.5s forwards;
+            animation: cardReveal 1.5s ease-out 2s forwards;
         }
 
         @keyframes cardReveal {
-            0% { opacity: 0; transform: scale(0.5) rotateY(180deg); }
+            0% { opacity: 0; transform: scale(0.3) rotateY(180deg); }
+            50% { transform: scale(1.1) rotateY(0deg); }
             100% { opacity: 1; transform: scale(1) rotateY(0deg); }
         }
 
         .card {
             position: relative;
-            background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 2px solid rgba(255,255,255,0.25);
-            border-radius: 25px;
-            padding: 30px 20px;
-            max-width: 420px;
+            background: linear-gradient(145deg, rgba(255,200,100,0.15), rgba(255,107,0,0.08));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 3px solid rgba(255,215,0,0.4);
+            border-radius: 30px;
+            padding: 35px 25px;
+            max-width: 450px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 80px rgba(255,107,107,0.2);
-            animation: cardFloat 5s ease-in-out infinite;
+            box-shadow: 
+                0 25px 80px rgba(255,107,0,0.3),
+                0 0 100px rgba(255,215,0,0.2),
+                inset 0 0 60px rgba(255,200,100,0.05);
+            animation: cardFloat 4s ease-in-out infinite;
         }
 
         @keyframes cardFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+            50% { transform: translateY(-12px) rotate(0.5deg); }
         }
 
-        .card::after {
+        .card::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #1dd1a1, #ff6b6b);
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: linear-gradient(45deg, #ff6b00, #ffd700, #ff4500, #ffaa00, #ff6b00);
             background-size: 400% 400%;
-            border-radius: 27px;
+            border-radius: 32px;
             z-index: -1;
-            animation: glowingBorder 4s ease infinite;
-            filter: blur(8px);
-            opacity: 0.6;
+            animation: glowingBorder 3s ease infinite;
+            filter: blur(10px);
+            opacity: 0.7;
         }
 
         @keyframes glowingBorder {
@@ -373,103 +486,141 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ==================== CAKE ==================== */
-        .cake-container {
+        /* ==================== CHEF & CHICKEN ==================== */
+        .chef-container {
             position: relative;
             margin-bottom: 15px;
-            padding-top: 20px;
+            padding-top: 10px;
         }
 
-        .cake {
-            font-size: 60px;
-            display: inline-block;
-            animation: cakeBounce 1.5s ease-in-out infinite;
-            cursor: pointer;
-            transition: transform 0.3s;
-            position: relative;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-        }
-
-        .cake:hover, .cake:active {
-            animation-play-state: paused;
-            transform: scale(1.15);
-        }
-
-        @keyframes cakeBounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-12px) scale(1.05); }
-        }
-
-        .candle-flames {
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
+        .chef-main {
             display: flex;
-            gap: 12px;
-            transition: all 0.5s ease;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            position: relative;
         }
 
-        .flame {
-            width: 10px;
-            height: 18px;
-            background: linear-gradient(180deg, #fff 0%, #ffeb3b 30%, #ff9800 70%, #f44336 100%);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: flicker 0.25s ease-in-out infinite alternate;
-            box-shadow: 0 0 15px #ff9800, 0 0 30px #ff5722;
+        .chicken-wing {
+            font-size: 55px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+            filter: drop-shadow(0 5px 20px rgba(255,107,0,0.5));
+            animation: chickenDance 0.8s ease-in-out infinite;
         }
 
-        @keyframes flicker {
-            0% { transform: scaleY(1) scaleX(1); }
-            100% { transform: scaleY(1.15) scaleX(0.85); }
+        .chicken-wing:first-of-type {
+            animation-delay: 0s;
         }
 
-        .blow-hint {
+        .chicken-wing:last-of-type {
+            animation-delay: 0.4s;
+        }
+
+        .chicken-wing:hover, .chicken-wing:active {
+            transform: scale(1.3) rotate(20deg) !important;
+        }
+
+        @keyframes chickenDance {
+            0%, 100% { transform: translateY(0) rotate(-10deg); }
+            50% { transform: translateY(-10px) rotate(10deg); }
+        }
+
+        .chef-emoji-main {
+            font-size: 70px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+            filter: drop-shadow(0 5px 25px rgba(255,215,0,0.4));
+            animation: chefCook 2s ease-in-out infinite;
+        }
+
+        .chef-emoji-main:hover, .chef-emoji-main:active {
+            animation-play-state: paused;
+            transform: scale(1.2);
+        }
+
+        @keyframes chefCook {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(-5deg); }
+            75% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        /* Fire under cooking */
+        .fire-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: -10px;
+        }
+
+        .fire {
+            font-size: 25px;
+            animation: fireFlicker 0.3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px #ff4500);
+        }
+
+        .fire:nth-child(2) { animation-delay: 0.1s; font-size: 30px; }
+        .fire:nth-child(3) { animation-delay: 0.2s; }
+
+        @keyframes fireFlicker {
+            0% { transform: scaleY(1) scaleX(1); opacity: 0.8; }
+            100% { transform: scaleY(1.2) scaleX(0.9); opacity: 1; }
+        }
+
+        .cook-hint {
             display: block;
-            margin-top: 8px;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.6);
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: rgba(255,215,0,0.7);
             animation: hintPulse 2s ease-in-out infinite;
+            font-family: 'Quicksand', sans-serif;
         }
-
-        .blow-hint.hidden { display: none; }
 
         @keyframes hintPulse {
-            0%, 100% { opacity: 0.4; }
+            0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
 
-        .cake.blown .candle-flames {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-15px);
+        /* ==================== YEAR DISPLAY ==================== */
+        .year-display {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(3rem, 15vw, 5rem);
+            background: linear-gradient(180deg, #ffd700, #ff6b00, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 5px 20px rgba(255,107,0,0.5));
+            margin: 10px 0;
+            letter-spacing: 8px;
+            animation: yearPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes yearPulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 5px 20px rgba(255,107,0,0.5)); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 8px 30px rgba(255,107,0,0.7)); }
         }
 
         /* ==================== TITLE ==================== */
         .title {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.8rem, 8vw, 3rem);
-            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #1dd1a1);
-            background-size: 300% 300%;
+            font-family: 'Lobster', cursive;
+            font-size: clamp(1.6rem, 7vw, 2.5rem);
+            background: linear-gradient(135deg, #ffd700, #ffaa00, #ff6b00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            margin: 10px 0;
-            line-height: 1.2;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            margin: 5px 0;
+            line-height: 1.3;
         }
 
         /* ==================== NAME ==================== */
         .name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.8rem, 9vw, 3.2rem);
-            font-weight: 900;
-            background: linear-gradient(90deg, #feca57, #ff6b6b, #ff9ff3, #48dbfb, #feca57);
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.8rem, 9vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff6b00, #ffd700, #ff4500, #ffaa00, #ff6b00);
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
@@ -489,83 +640,89 @@
         .message {
             font-size: clamp(0.9rem, 3.5vw, 1.05rem);
             color: rgba(255,255,255,0.9);
-            line-height: 1.7;
+            line-height: 1.8;
             margin: 15px 0;
             padding: 0 5px;
+        }
+
+        .message .highlight {
+            color: #ffd700;
+            font-weight: 700;
         }
 
         /* ==================== WISHES ==================== */
         .wishes {
             margin: 15px 0;
             padding: 15px 10px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
+            background: rgba(255,107,0,0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(255,215,0,0.2);
         }
 
         .wish-item {
             color: rgba(255,255,255,0.95);
-            padding: 10px 8px;
+            padding: 12px 10px;
             font-size: clamp(0.85rem, 3.5vw, 1rem);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.3s;
-            border-radius: 10px;
+            border-radius: 12px;
             -webkit-tap-highlight-color: transparent;
         }
 
         .wish-item:hover, .wish-item:active {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,215,0,0.15);
             transform: scale(1.03);
         }
 
         .wish-item span {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             transition: transform 0.3s;
         }
 
         .wish-item:hover span, .wish-item:active span {
-            transform: scale(1.3) rotate(10deg);
+            transform: scale(1.4) rotate(15deg);
         }
 
         /* ==================== DECORATIONS ==================== */
         .decorations {
             display: flex;
             justify-content: center;
-            gap: clamp(10px, 4vw, 18px);
+            gap: clamp(12px, 5vw, 20px);
             margin: 15px 0;
             flex-wrap: wrap;
         }
 
         .decoration {
-            font-size: clamp(1.8rem, 7vw, 2.2rem);
+            font-size: clamp(2rem, 8vw, 2.5rem);
             cursor: pointer;
             transition: all 0.3s;
             -webkit-tap-highlight-color: transparent;
         }
 
         .decoration:hover, .decoration:active {
-            transform: scale(1.3) rotate(15deg);
+            transform: scale(1.4) rotate(20deg);
         }
 
         /* ==================== FOOTER ==================== */
         .footer {
             margin-top: 15px;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            color: rgba(255,215,0,0.6);
+            font-family: 'Quicksand', sans-serif;
         }
 
-        .footer .heart {
+        .footer .chicken {
             display: inline-block;
-            color: #ff6b6b;
-            animation: heartBeat 1s ease-in-out infinite;
+            animation: chickenBeat 0.8s ease-in-out infinite;
         }
 
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.25); }
+        @keyframes chickenBeat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
         }
 
         /* ==================== TOAST ==================== */
@@ -574,17 +731,18 @@
             bottom: 80px;
             left: 50%;
             transform: translateX(-50%) translateY(50px);
-            background: linear-gradient(135deg, #1dd1a1, #10ac84);
-            color: white;
-            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff6b00, #ffd700);
+            color: #1a0a00;
+            padding: 15px 30px;
             border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
             z-index: 600;
             opacity: 0;
             transition: all 0.4s ease;
             white-space: nowrap;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 30px rgba(255,107,0,0.5);
+            font-family: 'Quicksand', sans-serif;
         }
 
         .toast.show {
@@ -597,14 +755,14 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            background: linear-gradient(135deg, #ff6b00, #ffd700);
             border: none;
             cursor: pointer;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(255,107,107,0.4);
+            font-size: 1.6rem;
+            box-shadow: 0 5px 25px rgba(255,107,0,0.5);
             transition: all 0.3s ease;
             z-index: 200;
             -webkit-tap-highlight-color: transparent;
@@ -615,12 +773,12 @@
         }
 
         .music-btn.playing {
-            animation: musicPulse 1s ease-in-out infinite;
+            animation: musicPulse 0.8s ease-in-out infinite;
         }
 
         @keyframes musicPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 25px rgba(255,107,0,0.5); }
+            50% { transform: scale(1.1); box-shadow: 0 8px 35px rgba(255,107,0,0.7); }
         }
 
         /* ==================== HINT ==================== */
@@ -629,79 +787,112 @@
             top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.85);
+            background: rgba(255,107,0,0.95);
             color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.8rem;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             z-index: 400;
             opacity: 0;
             transition: opacity 0.4s;
             pointer-events: none;
             text-align: center;
             max-width: 90%;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            box-shadow: 0 5px 20px rgba(255,107,0,0.4);
         }
 
         .hint-tooltip.show { opacity: 1; }
 
+        /* ==================== COUNTDOWN ==================== */
+        .countdown-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 800;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .countdown-overlay.show {
+            display: flex;
+        }
+
+        .countdown-number {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(8rem, 30vw, 15rem);
+            color: #ffd700;
+            text-shadow: 0 0 50px #ff6b00, 0 0 100px #ff4500;
+            animation: countdownPop 1s ease-out;
+        }
+
+        @keyframes countdownPop {
+            0% { transform: scale(3); opacity: 0; }
+            50% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-height: 700px) {
-            .card { padding: 25px 18px; }
-            .cake { font-size: 50px; }
-            .cake-container { margin-bottom: 10px; padding-top: 15px; }
-            .candle-flames { top: 5px; gap: 10px; }
-            .flame { width: 8px; height: 14px; }
-            .title { margin: 8px 0; }
-            .name { margin: 8px 0; }
-            .message { margin: 12px 0; }
-            .wishes { margin: 12px 0; padding: 12px 8px; }
-            .wish-item { padding: 8px 6px; }
-            .decorations { margin: 12px 0; }
-            .footer { margin-top: 12px; }
+            .card { padding: 25px 20px; }
+            .chef-emoji-main { font-size: 60px; }
+            .chicken-wing { font-size: 45px; }
+            .year-display { font-size: 3rem; letter-spacing: 5px; }
         }
 
         @media (max-height: 600px) {
             .card { padding: 20px 15px; border-radius: 20px; }
-            .cake { font-size: 45px; }
-            .title { font-size: 1.6rem; }
-            .name { font-size: 1.6rem; }
-            .message { font-size: 0.85rem; line-height: 1.5; margin: 10px 0; }
-            .wishes { padding: 10px 6px; }
-            .wish-item { padding: 6px 5px; font-size: 0.8rem; }
-            .wish-item span { font-size: 1.2rem; }
-            .decoration { font-size: 1.6rem; }
+            .chef-emoji-main { font-size: 50px; }
+            .chicken-wing { font-size: 40px; }
+            .year-display { font-size: 2.5rem; }
+            .fire { font-size: 20px; }
+            .fire:nth-child(2) { font-size: 25px; }
+            .title { font-size: 1.4rem; }
+            .name { font-size: 1.5rem; }
+            .message { font-size: 0.85rem; margin: 10px 0; }
+            .wishes { padding: 10px 8px; }
+            .wish-item { padding: 8px 6px; font-size: 0.8rem; }
         }
 
         @media (max-width: 360px) {
-            .card { padding: 20px 12px; }
-            .message { font-size: 0.85rem; }
+            .card { padding: 18px 12px; }
+            .message { font-size: 0.8rem; }
         }
 
         @media (min-width: 768px) {
             .card-container { padding: 40px 20px; }
-            .card { padding: 40px 35px; max-width: 480px; }
-            .cake { font-size: 70px; }
-            .music-btn { width: 55px; height: 55px; font-size: 1.6rem; bottom: 25px; right: 25px; }
+            .card { padding: 45px 40px; max-width: 500px; }
+            .chef-emoji-main { font-size: 80px; }
+            .chicken-wing { font-size: 65px; }
+            .music-btn { width: 60px; height: 60px; font-size: 1.8rem; }
         }
 
-        /* Landscape mode on mobile */
+        /* Landscape */
         @media (max-height: 500px) and (orientation: landscape) {
             .card-container { 
                 min-height: auto; 
-                padding: 15px 10px;
+                padding: 10px;
                 align-items: flex-start;
             }
             .card { 
                 padding: 15px 20px;
-                max-width: 90%;
+                max-width: 95%;
             }
-            .cake-container { margin-bottom: 8px; padding-top: 10px; }
-            .cake { font-size: 40px; }
-            .candle-flames { top: 3px; }
-            .flame { width: 6px; height: 12px; }
-            .title { font-size: 1.4rem; margin: 5px 0; }
-            .name { font-size: 1.4rem; margin: 5px 0; }
-            .message { font-size: 0.8rem; margin: 8px 0; }
+            .chef-container { margin-bottom: 5px; }
+            .chef-emoji-main { font-size: 45px; }
+            .chicken-wing { font-size: 35px; }
+            .fire { font-size: 18px; }
+            .fire:nth-child(2) { font-size: 22px; }
+            .year-display { font-size: 2rem; margin: 5px 0; letter-spacing: 3px; }
+            .title { font-size: 1.2rem; }
+            .name { font-size: 1.3rem; margin: 5px 0; }
+            .message { font-size: 0.75rem; margin: 8px 0; line-height: 1.5; }
             .wishes { 
                 display: flex; 
                 flex-wrap: wrap; 
@@ -711,24 +902,34 @@
                 margin: 8px 0;
             }
             .wish-item { 
-                padding: 5px 10px; 
-                font-size: 0.75rem;
+                padding: 5px 12px; 
+                font-size: 0.7rem;
                 flex: 0 0 auto;
             }
             .decorations { margin: 8px 0; }
-            .decoration { font-size: 1.4rem; }
+            .decoration { font-size: 1.5rem; }
             .footer { margin-top: 8px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Movie Intro -->
+    <div class="movie-intro" id="movieIntro">
+        <p class="movie-text line1">🎬 CHICKEN WING STUDIO PRESENTS 🎬</p>
+        <p class="movie-text line2">✨ A Delicious Production ✨</p>
+        <p class="movie-text line3">🍗 NĂM MỚI 2026 🍗</p>
+        <button class="skip-btn" onclick="skipIntro()">Skip ⏭️</button>
+    </div>
+
     <!-- Scene Intro -->
     <div class="scene-intro" id="sceneIntro">
-        <div class="gift-box">
-            <div class="lid"></div>
-            <div class="box"></div>
+        <div class="chef-box">
+            <span class="chicken-float">🍗</span>
+            <span class="chicken-float">🍗</span>
+            <span class="chicken-float">🍗</span>
+            <span class="chef-emoji">👨‍🍳</span>
         </div>
-        <p class="tap-text">👆 Nhấn để mở quà 🎁</p>
+        <p class="tap-text">👆 Nhấn để vào bếp tiệc năm mới! 🎊</p>
     </div>
 
     <!-- Curtain -->
@@ -739,12 +940,16 @@
 
     <!-- Background -->
     <div class="main-bg"></div>
+    <div class="kitchen-pattern"></div>
 
     <!-- Particles -->
     <div class="particles-container" id="particles"></div>
 
     <!-- Floating Elements -->
     <div class="floating-elements" id="floatingElements"></div>
+
+    <!-- Sizzle Effects -->
+    <div class="sizzle-container" id="sizzleContainer"></div>
 
     <!-- Fireworks -->
     <div class="fireworks-container" id="fireworks"></div>
@@ -755,44 +960,63 @@
     <!-- Hint -->
     <div class="hint-tooltip" id="hintTooltip"></div>
 
+    <!-- Countdown Overlay -->
+    <div class="countdown-overlay" id="countdownOverlay">
+        <div class="countdown-number" id="countdownNumber">3</div>
+    </div>
+
     <!-- Main Card -->
     <div class="card-container" id="cardContainer">
         <div class="card">
-            <div class="cake-container">
-                <div class="candle-flames" id="candleFlames">
-                    <div class="flame"></div>
-                    <div class="flame"></div>
-                    <div class="flame"></div>
+            <div class="chef-container">
+                <div class="chef-main">
+                    <span class="chicken-wing" id="chicken1" onclick="eatChicken(this)">🍗</span>
+                    <span class="chef-emoji-main" id="chef" onclick="chefCook()">👨‍🍳</span>
+                    <span class="chicken-wing" id="chicken2" onclick="eatChicken(this)">🍗</span>
                 </div>
-                <div class="cake" id="cake">🎂</div>
-                <span class="blow-hint" id="blowHint">👆 Nhấn bánh để thổi nến</span>
+                <div class="fire-container">
+                    <span class="fire">🔥</span>
+                    <span class="fire">🔥</span>
+                    <span class="fire">🔥</span>
+                </div>
+                <span class="cook-hint">👆 Nhấn đầu bếp để nấu ăn!</span>
             </div>
 
-            <h1 class="title">Chúc Mừng Sinh Nhật</h1>
+            <div class="year-display">2026</div>
+            <h1 class="title">🎊 Chúc Mừng Năm Mới 🎊</h1>
             <h2 class="name" id="userName">Bạn</h2>
 
             <p class="message">
-                🌟 Chúc bạn một ngày sinh nhật thật tuyệt vời!<br>
-                💫 Mong mọi điều tốt đẹp nhất sẽ đến với bạn!<br>
-                🎉 Hãy luôn vui vẻ và hạnh phúc nhé!
+                🍗 Năm mới <span class="highlight">ĂN NGON</span>, <span class="highlight">CHƠI VUI</span>!<br>
+                🔥 Nóng bỏng như cánh gà rán giòn!<br>
+                ✨ Đậm đà như nước sốt bí truyền!<br>
+                🎉 2026 sẽ <span class="highlight">BÙNG NỔ</span> như pháo hoa!
             </p>
 
             <div class="wishes">
-                <div class="wish-item" data-emoji="💖"><span>💖</span> Sức khỏe dồi dào</div>
-                <div class="wish-item" data-emoji="🌟"><span>🌟</span> Thành công rực rỡ</div>
-                <div class="wish-item" data-emoji="😊"><span>😊</span> Hạnh phúc viên mãn</div>
-                <div class="wish-item" data-emoji="💰"><span>💰</span> Tài lộc đầy nhà</div>
+                <div class="wish-item" data-emoji="💰" onclick="wishClick(this)">
+                    <span>💰</span> Tiền vô như gà đẻ trứng vàng
+                </div>
+                <div class="wish-item" data-emoji="❤️" onclick="wishClick(this)">
+                    <span>❤️</span> Tình yêu nóng hổi như gà mới chiên
+                </div>
+                <div class="wish-item" data-emoji="💪" onclick="wishClick(this)">
+                    <span>💪</span> Sức khỏe cứng cáp như đùi gà
+                </div>
+                <div class="wish-item" data-emoji="🌟" onclick="wishClick(this)">
+                    <span>🌟</span> Thành công giòn tan như da gà
+                </div>
             </div>
 
             <div class="decorations">
-                <span class="decoration" data-effect="firework">🎈</span>
-                <span class="decoration" data-effect="confetti">🎁</span>
-                <span class="decoration" data-effect="firework">🎊</span>
-                <span class="decoration" data-effect="hearts">🎀</span>
-                <span class="decoration" data-effect="sparkle">✨</span>
+                <span class="decoration" data-effect="firework" onclick="triggerEffect(this)">🎆</span>
+                <span class="decoration" data-effect="confetti" onclick="triggerEffect(this)">🎁</span>
+                <span class="decoration" data-effect="chicken" onclick="triggerEffect(this)">🍗</span>
+                <span class="decoration" data-effect="fire" onclick="triggerEffect(this)">🔥</span>
+                <span class="decoration" data-effect="sparkle" onclick="triggerEffect(this)">✨</span>
             </div>
 
-            <p class="footer">Made with <span class="heart">❤️</span> for you</p>
+            <p class="footer">Made with <span class="chicken">🍗</span> & <span class="chicken">❤️</span> for you</p>
         </div>
     </div>
 
@@ -809,7 +1033,7 @@
         let musicInterval;
         let confettiPieces = [];
         let confettiCtx, confettiCanvas;
-        let candlesBlown = false;
+        let cookCount = 0;
 
         // ==================== GET NAME FROM URL ====================
         function getNameFromURL() {
@@ -818,27 +1042,30 @@
         }
         document.getElementById('userName').textContent = decodeURIComponent(getNameFromURL());
 
-        // ==================== AUDIO SYSTEM ====================
-        const happyBirthdayNotes = [
-            { note: 'C4', duration: 0.25 }, { note: 'C4', duration: 0.25 },
-            { note: 'D4', duration: 0.5 }, { note: 'C4', duration: 0.5 },
-            { note: 'F4', duration: 0.5 }, { note: 'E4', duration: 1.0 },
-            { note: 'C4', duration: 0.25 }, { note: 'C4', duration: 0.25 },
-            { note: 'D4', duration: 0.5 }, { note: 'C4', duration: 0.5 },
-            { note: 'G4', duration: 0.5 }, { note: 'F4', duration: 1.0 },
-            { note: 'C4', duration: 0.25 }, { note: 'C4', duration: 0.25 },
-            { note: 'C5', duration: 0.5 }, { note: 'A4', duration: 0.5 },
-            { note: 'F4', duration: 0.5 }, { note: 'E4', duration: 0.5 },
-            { note: 'D4', duration: 1.0 },
-            { note: 'Bb4', duration: 0.25 }, { note: 'Bb4', duration: 0.25 },
-            { note: 'A4', duration: 0.5 }, { note: 'F4', duration: 0.5 },
-            { note: 'G4', duration: 0.5 }, { note: 'F4', duration: 1.5 },
-        ];
+        // ==================== MOVIE INTRO ====================
+        setTimeout(() => {
+            document.getElementById('movieIntro').classList.add('hidden');
+        }, 5500);
 
-        const noteFrequencies = {
-            'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23,
-            'G4': 392.00, 'A4': 440.00, 'Bb4': 466.16, 'C5': 523.25
-        };
+        function skipIntro() {
+            document.getElementById('movieIntro').classList.add('hidden');
+        }
+
+        // ==================== AUDIO SYSTEM - PARTY BEAT ====================
+        const partyNotes = [
+            { freq: 261.63, dur: 0.15 }, // C4
+            { freq: 329.63, dur: 0.15 }, // E4
+            { freq: 392.00, dur: 0.15 }, // G4
+            { freq: 523.25, dur: 0.3 },  // C5
+            { freq: 392.00, dur: 0.15 }, // G4
+            { freq: 329.63, dur: 0.15 }, // E4
+            { freq: 261.63, dur: 0.3 },  // C4
+            { freq: 293.66, dur: 0.15 }, // D4
+            { freq: 349.23, dur: 0.15 }, // F4
+            { freq: 440.00, dur: 0.3 },  // A4
+            { freq: 523.25, dur: 0.15 }, // C5
+            { freq: 587.33, dur: 0.3 },  // D5
+        ];
 
         function playNote(freq, dur, time) {
             const osc = audioContext.createOscillator();
@@ -846,21 +1073,21 @@
             osc.connect(gain);
             gain.connect(audioContext.destination);
             osc.frequency.value = freq;
-            osc.type = 'triangle';
-            gain.gain.setValueAtTime(0.18, time);
+            osc.type = 'square';
+            gain.gain.setValueAtTime(0.12, time);
             gain.gain.exponentialRampToValueAtTime(0.01, time + dur);
             osc.start(time);
             osc.stop(time + dur);
         }
 
-        function playHappyBirthday() {
+        function playPartyMusic() {
             if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
             let time = audioContext.currentTime;
-            happyBirthdayNotes.forEach(({ note, duration }) => {
-                playNote(noteFrequencies[note], duration, time);
-                time += duration;
+            partyNotes.forEach(({ freq, dur }) => {
+                playNote(freq, dur, time);
+                time += dur;
             });
-            return happyBirthdayNotes.reduce((sum, n) => sum + n.duration, 0);
+            return partyNotes.reduce((sum, n) => sum + n.dur, 0);
         }
 
         function startMusic() {
@@ -868,8 +1095,8 @@
             isPlaying = true;
             document.getElementById('musicBtn').classList.add('playing');
             document.getElementById('musicBtn').textContent = '🔊';
-            const dur = playHappyBirthday();
-            musicInterval = setInterval(() => { if (isPlaying) playHappyBirthday(); }, (dur + 0.5) * 1000);
+            const dur = playPartyMusic();
+            musicInterval = setInterval(() => { if (isPlaying) playPartyMusic(); }, (dur + 0.3) * 1000);
         }
 
         function stopMusic() {
@@ -882,18 +1109,42 @@
         document.getElementById('musicBtn').addEventListener('click', () => isPlaying ? stopMusic() : startMusic());
 
         // ==================== SOUND EFFECTS ====================
+        function playSizzleSound() {
+            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            // White noise for sizzle
+            const bufferSize = audioContext.sampleRate * 0.2;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            const noise = audioContext.createBufferSource();
+            noise.buffer = buffer;
+            const filter = audioContext.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 3000;
+            const gain = audioContext.createGain();
+            gain.gain.setValueAtTime(0.15, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioContext.destination);
+            noise.start();
+            noise.stop(audioContext.currentTime + 0.2);
+        }
+
         function playPopSound() {
             if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
             const osc = audioContext.createOscillator();
             const gain = audioContext.createGain();
             osc.connect(gain);
             gain.connect(audioContext.destination);
-            osc.frequency.value = 400;
+            osc.frequency.value = 500;
             osc.type = 'sine';
-            gain.gain.setValueAtTime(0.25, audioContext.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.08);
+            gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
             osc.start();
-            osc.stop(audioContext.currentTime + 0.08);
+            osc.stop(audioContext.currentTime + 0.1);
         }
 
         function playFireworkSound() {
@@ -902,107 +1153,192 @@
             const gain = audioContext.createGain();
             osc.connect(gain);
             gain.connect(audioContext.destination);
-            osc.frequency.value = 120;
+            osc.frequency.setValueAtTime(150, audioContext.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.3);
             osc.type = 'sawtooth';
             gain.gain.setValueAtTime(0.15, audioContext.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.25);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
             osc.start();
-            osc.stop(audioContext.currentTime + 0.25);
+            osc.stop(audioContext.currentTime + 0.3);
         }
 
         // ==================== SCENE MANAGEMENT ====================
         document.getElementById('sceneIntro').addEventListener('click', () => {
             document.getElementById('sceneIntro').classList.add('hidden');
             document.getElementById('sceneCurtain').classList.add('active');
+            
+            // Countdown
+            showCountdown();
+            
             setTimeout(() => {
                 document.getElementById('sceneCurtain').classList.add('open');
                 startMusic();
                 startAllAnimations();
-            }, 400);
-            setTimeout(launchFireworks, 1200);
-            setTimeout(() => showHint('💡 Chạm vào các vật phẩm để tương tác!'), 3500);
+            }, 3500);
+            
+            setTimeout(launchFireworks, 4000);
+            setTimeout(() => showHint('💡 Chạm vào mọi thứ để tương tác! 🍗'), 5500);
         });
 
+        function showCountdown() {
+            const overlay = document.getElementById('countdownOverlay');
+            const numberEl = document.getElementById('countdownNumber');
+            overlay.classList.add('show');
+            
+            let count = 3;
+            numberEl.textContent = count;
+            
+            const countInterval = setInterval(() => {
+                count--;
+                if (count > 0) {
+                    numberEl.textContent = count;
+                    numberEl.style.animation = 'none';
+                    setTimeout(() => numberEl.style.animation = 'countdownPop 1s ease-out', 10);
+                } else if (count === 0) {
+                    numberEl.textContent = '🍗';
+                    numberEl.style.animation = 'none';
+                    setTimeout(() => numberEl.style.animation = 'countdownPop 1s ease-out', 10);
+                } else {
+                    clearInterval(countInterval);
+                    overlay.classList.remove('show');
+                }
+            }, 1000);
+        }
+
         // ==================== PARTICLES ====================
-        function createStars() {
+        function createSparks() {
             const container = document.getElementById('particles');
-            const count = window.innerWidth < 600 ? 60 : 100;
+            const count = window.innerWidth < 600 ? 50 : 80;
             for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 2.5 + 1;
-                star.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${size}px;height:${size}px;animation-delay:${Math.random()*3}s;`;
-                container.appendChild(star);
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                const size = Math.random() * 3 + 1;
+                const colors = ['#ffd700', '#ff6b00', '#ff4500', '#ffaa00'];
+                spark.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    animation-delay: ${Math.random() * 3}s;
+                `;
+                container.appendChild(spark);
             }
         }
-        createStars();
+        createSparks();
 
         // ==================== FLOATING ELEMENTS ====================
         function createFloatingElements() {
             const container = document.getElementById('floatingElements');
-            const emojis = ['💖', '⭐', '✨', '🌟', '💫', '❤️'];
-            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#5f27cd'];
+            const foods = ['🍗', '🔥', '⭐', '✨', '🎊', '🎉', '💰', '❤️'];
             const isMobile = window.innerWidth < 600;
 
-            // Floating hearts
-            const heartCount = isMobile ? 12 : 18;
-            for (let i = 0; i < heartCount; i++) {
+            // Floating food
+            const foodCount = isMobile ? 10 : 15;
+            for (let i = 0; i < foodCount; i++) {
                 const el = document.createElement('div');
-                el.className = 'floating-heart';
-                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                el.style.cssText = `left:${Math.random()*100}%;animation-delay:${Math.random()*12}s;font-size:${Math.random()*0.8+1}rem;`;
+                el.className = 'floating-food';
+                el.textContent = foods[Math.floor(Math.random() * foods.length)];
+                el.style.cssText = `
+                    left: ${Math.random() * 100}%;
+                    animation-delay: ${Math.random() * 12}s;
+                    font-size: ${Math.random() * 1 + 1.5}rem;
+                `;
                 el.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    createHeartBurst(e.clientX, e.clientY);
+                    createSizzleBurst(e.clientX, e.clientY);
+                    playPopSound();
                 });
                 container.appendChild(el);
             }
 
-            // Balloons
-            const balloonCount = isMobile ? 5 : 7;
-            for (let i = 0; i < balloonCount; i++) {
-                const balloon = document.createElement('div');
-                balloon.className = 'balloon';
-                balloon.style.cssText = `left:${8+i*(90/balloonCount)}%;bottom:${55+Math.random()*25}%;background:${colors[i%colors.length]};animation-delay:${i*0.4}s;`;
-                balloon.addEventListener('click', function(e) {
+            // Flying chickens
+            const chickenCount = isMobile ? 4 : 6;
+            for (let i = 0; i < chickenCount; i++) {
+                const chicken = document.createElement('div');
+                chicken.className = 'flying-chicken';
+                chicken.textContent = '🍗';
+                chicken.style.cssText = `
+                    left: ${10 + i * (80 / chickenCount)}%;
+                    top: ${20 + Math.random() * 40}%;
+                    animation-delay: ${i * 0.5}s;
+                `;
+                chicken.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    if (!this.classList.contains('popped')) {
-                        this.classList.add('popped');
-                        playPopSound();
-                        createConfettiBurst(e.clientX, e.clientY);
-                        setTimeout(() => this.remove(), 400);
+                    if (!this.classList.contains('eaten')) {
+                        this.classList.add('eaten');
+                        playSizzleSound();
+                        createSizzleBurst(e.clientX, e.clientY);
+                        showToast('🍗 Ngon quá! Ăn thêm cái nữa!');
+                        setTimeout(() => {
+                            this.classList.remove('eaten');
+                        }, 3000);
                     }
                 });
-                container.appendChild(balloon);
+                container.appendChild(chicken);
+            }
+
+            // Steam effects
+            for (let i = 0; i < 5; i++) {
+                const steam = document.createElement('div');
+                steam.className = 'steam';
+                steam.style.cssText = `
+                    left: ${20 + i * 15}%;
+                    bottom: 30%;
+                    animation-delay: ${i * 0.4}s;
+                `;
+                container.appendChild(steam);
+            }
+        }
+
+        // ==================== SIZZLE BURST ====================
+        function createSizzleBurst(x, y) {
+            const container = document.getElementById('sizzleContainer');
+            const sizzles = ['💥', '✨', '🔥', '💫', '⚡'];
+            for (let i = 0; i < 8; i++) {
+                const sizzle = document.createElement('div');
+                sizzle.className = 'sizzle';
+                sizzle.textContent = sizzles[Math.floor(Math.random() * sizzles.length)];
+                sizzle.style.left = (x + Math.random() * 60 - 30) + 'px';
+                sizzle.style.top = (y + Math.random() * 60 - 30) + 'px';
+                container.appendChild(sizzle);
+                setTimeout(() => sizzle.remove(), 800);
             }
         }
 
         // ==================== FIREWORKS ====================
         function createFirework(x, y) {
             const container = document.getElementById('fireworks');
-            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1', '#5f27cd', '#fff'];
+            const colors = ['#ff6b00', '#ffd700', '#ff4500', '#ffaa00', '#ff6b6b', '#fff'];
             const color = colors[Math.floor(Math.random() * colors.length)];
-            const particleCount = window.innerWidth < 600 ? 28 : 36;
+            const particleCount = window.innerWidth < 600 ? 30 : 40;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'firework-particle';
                 const angle = (i / particleCount) * Math.PI * 2;
-                const velocity = 60 + Math.random() * 80;
-                particle.style.cssText = `left:${x}px;top:${y}px;background:${color};box-shadow:0 0 8px ${color};--tx:${Math.cos(angle)*velocity}px;--ty:${Math.sin(angle)*velocity}px;`;
+                const velocity = 70 + Math.random() * 100;
+                particle.style.cssText = `
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: ${color};
+                    box-shadow: 0 0 10px ${color};
+                    --tx: ${Math.cos(angle) * velocity}px;
+                    --ty: ${Math.sin(angle) * velocity}px;
+                `;
                 container.appendChild(particle);
-                setTimeout(() => particle.remove(), 1200);
+                setTimeout(() => particle.remove(), 1500);
             }
             playFireworkSound();
         }
 
         function launchFireworks() {
-            const count = window.innerWidth < 600 ? 3 : 5;
+            const count = window.innerWidth < 600 ? 4 : 6;
             for (let i = 0; i < count; i++) {
                 setTimeout(() => createFirework(
                     Math.random() * window.innerWidth * 0.8 + window.innerWidth * 0.1,
                     Math.random() * window.innerHeight * 0.4 + window.innerHeight * 0.1
-                ), i * 350);
+                ), i * 300);
             }
         }
 
@@ -1015,12 +1351,13 @@
             reset() {
                 this.x = Math.random() * this.canvas.width;
                 this.y = -15;
-                this.size = Math.random() * 8 + 4;
+                this.size = Math.random() * 10 + 5;
                 this.speedY = Math.random() * 2.5 + 1.5;
                 this.speedX = Math.random() * 3 - 1.5;
                 this.rotation = Math.random() * 360;
-                this.rotationSpeed = Math.random() * 8 - 4;
-                this.color = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#1dd1a1'][Math.floor(Math.random() * 5)];
+                this.rotationSpeed = Math.random() * 10 - 5;
+                this.color = ['#ff6b00', '#ffd700', '#ff4500', '#ffaa00', '#fff'][Math.floor(Math.random() * 5)];
+                this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
             }
             update() {
                 this.y += this.speedY;
@@ -1033,7 +1370,13 @@
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.rotation * Math.PI / 180);
                 ctx.fillStyle = this.color;
-                ctx.fillRect(-this.size/2, -this.size/4, this.size, this.size/2);
+                if (this.shape === 'rect') {
+                    ctx.fillRect(-this.size/2, -this.size/4, this.size, this.size/2);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size/3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
                 ctx.restore();
             }
         }
@@ -1044,7 +1387,7 @@
             confettiCanvas.width = window.innerWidth;
             confettiCanvas.height = window.innerHeight;
 
-            const count = window.innerWidth < 600 ? 80 : 120;
+            const count = window.innerWidth < 600 ? 60 : 100;
             for (let i = 0; i < count; i++) {
                 confettiPieces.push(new ConfettiPiece(confettiCanvas));
             }
@@ -1063,120 +1406,138 @@
         }
 
         function createConfettiBurst(x, y) {
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 30; i++) {
                 const piece = new ConfettiPiece(confettiCanvas);
                 piece.x = x;
                 piece.y = y;
-                piece.speedY = Math.random() * 4 - 6;
-                piece.speedX = Math.random() * 8 - 4;
+                piece.speedY = Math.random() * 5 - 7;
+                piece.speedX = Math.random() * 10 - 5;
                 confettiPieces.push(piece);
             }
         }
 
-        // ==================== HEART BURST ====================
-        function createHeartBurst(x, y) {
-            const emojis = ['💖', '💕', '💗', '💓', '❤️'];
-            for (let i = 0; i < 8; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'touch-trail';
-                heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                heart.style.left = x + 'px';
-                heart.style.top = y + 'px';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 800);
+        // ==================== CHEF INTERACTION ====================
+        function chefCook() {
+            cookCount++;
+            const chef = document.getElementById('chef');
+            chef.style.transform = 'scale(1.3) rotate(10deg)';
+            setTimeout(() => chef.style.transform = '', 200);
+            
+            playSizzleSound();
+            createSizzleBurst(window.innerWidth / 2, window.innerHeight / 2);
+            
+            const messages = [
+                '👨‍🍳 Đang chiên gà giòn tan!',
+                '🔥 Nóng hổi vừa thổi vừa ăn!',
+                '✨ Món ngon đãi khách quý!',
+                '🍗 Gà chiên hoàng kim!',
+                '💯 Đầu bếp 5 sao!',
+            ];
+            showToast(messages[cookCount % messages.length]);
+            
+            if (cookCount % 3 === 0) {
+                launchFireworks();
             }
         }
 
-        // ==================== CAKE INTERACTION ====================
-        document.getElementById('cake').addEventListener('click', function(e) {
-            if (!candlesBlown) {
-                candlesBlown = true;
-                this.classList.add('blown');
-                document.getElementById('blowHint').classList.add('hidden');
-                launchFireworks();
-                showToast('🎉 Điều ước sẽ thành hiện thực!');
-                
+        function eatChicken(el) {
+            el.style.transform = 'scale(1.5) rotate(360deg)';
+            el.style.transition = 'all 0.3s';
+            playPopSound();
+            createSizzleBurst(el.getBoundingClientRect().left, el.getBoundingClientRect().top);
+            
+            setTimeout(() => {
+                el.style.transform = '';
+            }, 300);
+            
+            showToast('🍗 Mmm... Ngon tuyệt!');
+        }
+
+        // ==================== WISH CLICK ====================
+        function wishClick(el) {
+            const emoji = el.dataset.emoji;
+            const rect = el.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top;
+            
+            for (let i = 0; i < 8; i++) {
                 setTimeout(() => {
-                    candlesBlown = false;
-                    this.classList.remove('blown');
-                    document.getElementById('candleFlames').style.opacity = '1';
-                    document.getElementById('candleFlames').style.transform = 'translateX(-50%)';
-                }, 4000);
+                    const trail = document.createElement('div');
+                    trail.className = 'touch-trail';
+                    trail.textContent = emoji;
+                    trail.style.left = (x + Math.random() * 40 - 20) + 'px';
+                    trail.style.top = y + 'px';
+                    document.body.appendChild(trail);
+                    setTimeout(() => trail.remove(), 1000);
+                }, i * 80);
             }
-        });
+            playPopSound();
+        }
 
-        // ==================== WISH ITEMS ====================
-        document.querySelectorAll('.wish-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                const emoji = this.dataset.emoji;
-                const rect = this.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top;
-                for (let i = 0; i < 6; i++) {
-                    setTimeout(() => {
-                        const el = document.createElement('div');
-                        el.className = 'touch-trail';
-                        el.textContent = emoji;
-                        el.style.left = x + (Math.random() * 30 - 15) + 'px';
-                        el.style.top = y + 'px';
-                        el.style.fontSize = '24px';
-                        document.body.appendChild(el);
-                        setTimeout(() => el.remove(), 800);
-                    }, i * 80);
-                }
-            });
-        });
-
-        // ==================== DECORATIONS ====================
-        document.querySelectorAll('.decoration').forEach(deco => {
-            deco.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = rect.left + rect.width / 2;
-                const y = rect.top + rect.height / 2;
-                const effect = this.dataset.effect;
-                
-                switch(effect) {
-                    case 'firework':
-                        for (let i = 0; i < 3; i++) {
-                            setTimeout(() => createFirework(
-                                x + Math.random() * 100 - 50,
-                                y + Math.random() * 100 - 50
-                            ), i * 150);
-                        }
-                        break;
-                    case 'confetti':
-                        createConfettiBurst(x, y);
-                        break;
-                    case 'hearts':
-                        createHeartBurst(x, y);
-                        break;
-                    case 'sparkle':
-                        for (let i = 0; i < 12; i++) {
-                            const sparkle = document.createElement('div');
-                            sparkle.className = 'touch-trail';
-                            sparkle.textContent = '✨';
-                            sparkle.style.left = x + Math.random() * 60 - 30 + 'px';
-                            sparkle.style.top = y + Math.random() * 60 - 30 + 'px';
-                            document.body.appendChild(sparkle);
-                            setTimeout(() => sparkle.remove(), 800);
-                        }
-                        break;
-                }
-            });
-        });
+        // ==================== DECORATION EFFECTS ====================
+        function triggerEffect(el) {
+            const rect = el.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            const effect = el.dataset.effect;
+            
+            switch(effect) {
+                case 'firework':
+                    for (let i = 0; i < 3; i++) {
+                        setTimeout(() => createFirework(
+                            x + Math.random() * 100 - 50,
+                            y + Math.random() * 100 - 50
+                        ), i * 200);
+                    }
+                    break;
+                case 'confetti':
+                    createConfettiBurst(x, y);
+                    playPopSound();
+                    break;
+                case 'chicken':
+                    for (let i = 0; i < 10; i++) {
+                        const chicken = document.createElement('div');
+                        chicken.className = 'touch-trail';
+                        chicken.textContent = '🍗';
+                        chicken.style.left = (x + Math.random() * 80 - 40) + 'px';
+                        chicken.style.top = (y + Math.random() * 80 - 40) + 'px';
+                        document.body.appendChild(chicken);
+                        setTimeout(() => chicken.remove(), 1000);
+                    }
+                    playSizzleSound();
+                    showToast('🍗🍗🍗 Mưa cánh gà!');
+                    break;
+                case 'fire':
+                    createSizzleBurst(x, y);
+                    playSizzleSound();
+                    break;
+                case 'sparkle':
+                    for (let i = 0; i < 15; i++) {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'touch-trail';
+                        sparkle.textContent = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+                        sparkle.style.left = (x + Math.random() * 80 - 40) + 'px';
+                        sparkle.style.top = (y + Math.random() * 80 - 40) + 'px';
+                        document.body.appendChild(sparkle);
+                        setTimeout(() => sparkle.remove(), 1000);
+                    }
+                    playPopSound();
+                    break;
+            }
+        }
 
         // ==================== TOUCH TRAIL ====================
         let isDrawing = false;
-        const trailEmojis = ['✨', '💖', '⭐', '🌟'];
+        const trailEmojis = ['✨', '🍗', '⭐', '🔥', '💫'];
 
         document.addEventListener('mousedown', () => isDrawing = true);
         document.addEventListener('mouseup', () => isDrawing = false);
         document.addEventListener('mousemove', (e) => {
-            if (isDrawing && Math.random() > 0.75) createTrailAt(e.clientX, e.clientY);
+            if (isDrawing && Math.random() > 0.7) createTrailAt(e.clientX, e.clientY);
         });
 
         document.addEventListener('touchmove', (e) => {
-            if (Math.random() > 0.8) {
+            if (Math.random() > 0.75) {
                 const touch = e.touches[0];
                 createTrailAt(touch.clientX, touch.clientY);
             }
@@ -1189,7 +1550,7 @@
             trail.style.left = x + 'px';
             trail.style.top = y + 'px';
             document.body.appendChild(trail);
-            setTimeout(() => trail.remove(), 800);
+            setTimeout(() => trail.remove(), 1000);
         }
 
         // ==================== DOUBLE TAP FIREWORK ====================
@@ -1215,7 +1576,7 @@
             const hint = document.getElementById('hintTooltip');
             hint.textContent = msg;
             hint.classList.add('show');
-            setTimeout(() => hint.classList.remove('show'), 3500);
+            setTimeout(() => hint.classList.remove('show'), 4000);
         }
 
         // ==================== START ====================
@@ -1224,7 +1585,7 @@
             initConfetti();
         }
 
-        // ==================== SHAKE FOR CONFETTI ====================
+        // ==================== SHAKE FOR CHICKEN RAIN ====================
         if (window.DeviceMotionEvent) {
             let lastShake = 0;
             window.addEventListener('devicemotion', (e) => {
@@ -1233,15 +1594,38 @@
                     const force = Math.abs(acc.x || 0) + Math.abs(acc.y || 0) + Math.abs(acc.z || 0);
                     if (force > 35 && Date.now() - lastShake > 1000) {
                         lastShake = Date.now();
-                        for (let i = 0; i < 40; i++) {
-                            const piece = new ConfettiPiece(confettiCanvas);
-                            piece.y = Math.random() * window.innerHeight;
-                            confettiPieces.push(piece);
+                        // Chicken rain!
+                        for (let i = 0; i < 20; i++) {
+                            const chicken = document.createElement('div');
+                            chicken.className = 'touch-trail';
+                            chicken.textContent = '🍗';
+                            chicken.style.left = Math.random() * window.innerWidth + 'px';
+                            chicken.style.top = Math.random() * window.innerHeight / 2 + 'px';
+                            chicken.style.fontSize = '30px';
+                            document.body.appendChild(chicken);
+                            setTimeout(() => chicken.remove(), 1000);
                         }
+                        showToast('🌧️🍗 Mưa cánh gà!');
+                        playSizzleSound();
                     }
                 }
             });
         }
+
+        // ==================== KEYBOARD SHORTCUTS ====================
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case 'f':
+                    launchFireworks();
+                    break;
+                case 'c':
+                    createConfettiBurst(window.innerWidth / 2, window.innerHeight / 2);
+                    break;
+                case 'm':
+                    isPlaying ? stopMusic() : startMusic();
+                    break;
+            }
+        });
     </script>
 </body>
 </html>
